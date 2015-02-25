@@ -9,10 +9,7 @@ namespace UnitySimpleNotifier
 		
 		public override void ScheduleNotification (DateTime dateTime, string title, string body)
 		{
-			AndroidJavaObject clazz = new AndroidJavaClass ("com.unity3d.player.UnityPlayer");
-			AndroidJavaObject activity = clazz.GetStatic<AndroidJavaObject> ("currentActivity");
 			AndroidJavaObject service = new AndroidJavaClass ("info.mizoguche.simplenotification.SimpleNotificationService");
-			
 			service.CallStatic ("scheduleNotification", ToUnixTime (dateTime) * 1000, title, body);
 		}
 		
